@@ -8,7 +8,7 @@ export default class ScriptSwitcher extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      prevProps.scriptUrl !==this.props.scriptUrl ||
+      prevProps.scriptUrl !== this.props.scriptUrl ||
       prevProps.data !== this.props.data
       ) {
       this.node.innerHTML = '';
@@ -29,9 +29,9 @@ export default class ScriptSwitcher extends Component {
 
   appendNewScript = () => {
     this.script = document.createElement('script');
-    this.script.type = 'text/javascript'
-    this.script.src = this.props.scriptUrl
-    this.script.innerHTML = JSON.stringify({ data: this.props.data })
+    this.script.type = 'text/javascript';
+    this.script.src = this.props.scriptUrl;
+    this.script.innerHTML = JSON.stringify({ data: this.props.data });
     this.node.appendChild(this.script);
   }
 
@@ -45,6 +45,6 @@ export default class ScriptSwitcher extends Component {
         id='script-container'
         ref={this.setRef}
       />
-    )
+    );
   }
 }
