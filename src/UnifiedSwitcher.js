@@ -5,6 +5,7 @@ const SCRIPT_URLS = ['/script1.js', '/script2.js', '/script3.js']
 export default class UnifiedSwitcher extends Component {
 
   componentDidMount() {
+    this.data = ''
     this.appendNewScript(0);
   }
 
@@ -24,6 +25,7 @@ export default class UnifiedSwitcher extends Component {
     this.script = document.createElement('script');
     this.script.type = 'text/javascript';
     this.script.src = SCRIPT_URLS[scriptId];
+    this.script.innerHTML = JSON.stringify({ data: this.data });
     this.node.appendChild(this.script);
   }
 
@@ -34,8 +36,19 @@ export default class UnifiedSwitcher extends Component {
     }
   }
 
-  setRef = (node) => {
+  setRef = node => {
     this.node = node;
+  }
+
+  setInputRef = node => {
+    this.input = node;
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.data = this.input.value;
+    this.node.innerHTML = '';
+    this.appendNewScript(this.scriptId);
   }
 
   render() {
@@ -46,6 +59,17 @@ export default class UnifiedSwitcher extends Component {
           <button onClick={() => this.setScript(1)}>Script 2</button>
           <button onClick={() => this.setScript(2)}>Script 3</button>
         </div>
+        <form
+          className="data-form"
+          onSubmit={this.handleSubmit}
+        >
+          <input
+            ref={this.setInputRef}
+            type='text'
+            placeholder='Enter data to be appended here'
+          />
+          <button formAction='submit'>Set</button>
+        </form>
         <div>
           <div
             id='script-container'
