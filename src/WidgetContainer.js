@@ -16,7 +16,7 @@ export default class WidgetContainer extends Component {
     const scriptUrl = SCRIPT_URLS[this.state.scriptId];
     return (
       <div className='container'>
-        <div className="button-wrap">
+        <div className='button-wrap'>
           <button onClick={() => this.setScript(0)}>Script 1</button>
           <button onClick={() => this.setScript(1)}>Script 2</button>
           <button onClick={() => this.setScript(2)}>Script 3</button>
