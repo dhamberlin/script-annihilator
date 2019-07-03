@@ -1,5 +1,5 @@
 (() => {
   const node = document.createElement('div');
-  node.innerHTML = `<p>Greetings from script 2</p>`;
+  node.innerHTML = 'Greetings from script 2';
   document.querySelector('#script-container').appendChild(node);
 })()
